@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Wave generator</title>
+	<link rel="stylesheet" href="design.css">
+	<script src="wave.js" defer></script>
+</head>
+
+<body>
+	<form>
+		<fieldset>
+			<legend>Normal mode</legend>
+			<input type="number" name="n" value="4">
+		</fieldset>
+		<fieldset>
+			<legend>Amplitude</legend>
+			<input type="number" name="A" value="40">
+		</fieldset>
+		<fieldset>
+			<legend>Velocity</legend>
+			<input type="number" name="v" value="3">
+		</fieldset>
+		<fieldset>
+			<legend>Standing</legend>
+			<label>
+				<input type="checkbox" name="standing">
+				<span>Yes</span>
+			</label>
+		</fieldset>
+	</form>
+	
+	<div>
+		<fieldset>
+			<legend>Transverse Wave</legend>
+			<div class="transverse"></div>
+		</fieldset>
+	</div>
+	
+	<div>
+		<fieldset>
+			<legend>Longitudinal Wave</legend>
+			<div class="longitudinal"></div>
+		</fieldset>
+	</div>
+</body>
+</html>
