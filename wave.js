@@ -5,7 +5,7 @@ const N = 23;
 for(let p=0; p<=N+1; p++) document.querySelector('.transverse').innerHTML += '<div></div>';
 
 // Setup molecules
-for(let p=0; p<300; p++) {
+for(let p=0; p<500; p++) {
 	const atom = document.createElement('div');
 	const longitudinal = document.querySelector('.longitudinal');
 	atom.style.left = Math.random() * longitudinal.offsetWidth + 'px';
@@ -32,8 +32,8 @@ function animate(timestamp) {
 		const x = p / (N+1);
 		
 		// Calculate standing/travelling wave
-		if(standing.checked) item.style.top = A.value * Math.sin(n.value * Math.PI * x) * Math.cos(w*t) + 'px';
-		else item.style.top = A.value * Math.cos(k*x - w*t) + 'px';
+		if(standing.checked) item.style.transform = 'translateY(' + A.value * Math.sin(n.value * Math.PI * x) * Math.cos(w*t) + 'px)';
+		else item.style.transform = 'translateY(' + A.value * Math.cos(k*x - w*t) + 'px)';
 	});
 	
 	// Longitudinal wave
@@ -41,8 +41,8 @@ function animate(timestamp) {
 		const x = item.offsetLeft / item.parentNode.offsetWidth;
 		
 		// Calculate standing/travelling wave
-		if(standing.checked) item.style.marginLeft = A.value * Math.sin(n.value * Math.PI * x) * Math.cos(w * t) + 'px';
-		else item.style.marginLeft = A.value * Math.cos(k*x - w*t) + 'px';
+		if(standing.checked) item.style.transform = 'translateX(' + A.value * Math.sin(n.value * Math.PI * x) * Math.cos(w*t) + 'px)';
+		else item.style.transform = 'translateX(' + A.value * Math.cos(k*x - w*t) + 'px)';
 	});
 	
 	// Recursion
