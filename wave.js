@@ -1,5 +1,5 @@
 // Number of particles
-const N = 23;
+const N = 100;
 
 // Setup particles
 for(let p=0; p<=N+1; p++) document.querySelector('.transverse').innerHTML += '<div></div>';
@@ -15,34 +15,35 @@ for(let p=0; p<500; p++) {
 
 // Connect settings
 const standing = document.querySelector('input[name="standing"]');
-const n = document.querySelector('input[name="n"]');
 const v = document.querySelector('input[name="v"]');
-const A = document.querySelector('input[name="A"]');
+const l = document.querySelector('input[name="l"]');
 
 // Animation loop
 function animate(timestamp) {
 	const t = timestamp / 1000;
 	
 	// Calculate global values
-	const k = n.value * Math.PI;
+	const k = (2 * Math.PI) / l.value;
 	const w = k * (v.value / 10);
 	
 	// Transverse wave
 	document.querySelector('.transverse').childNodes.forEach((item, p) => {
 		const x = p / (N+1);
+		const A = item.parentNode.offsetHeight / 2;
 		
 		// Calculate standing/travelling wave
-		if(standing.checked) item.style.transform = 'translateY(' + A.value * Math.sin(n.value * Math.PI * x) * Math.cos(w*t) + 'px)';
-		else item.style.transform = 'translateY(' + A.value * Math.cos(k*x - w*t) + 'px)';
+		if(standing.checked) item.style.transform = 'translateY(' + A * Math.sin(k*x) * Math.cos(w*t) + 'px)';
+		else item.style.transform = 'translateY(' + A * Math.cos(k*x - w*t) + 'px)';
 	});
 	
 	// Longitudinal wave
 	document.querySelector('.longitudinal').childNodes.forEach((item, p) => {
 		const x = item.offsetLeft / item.parentNode.offsetWidth;
+		const A = (l.value / 4) * item.parentNode.offsetWidth;
 		
 		// Calculate standing/travelling wave
-		if(standing.checked) item.style.transform = 'translateX(' + A.value * Math.sin(n.value * Math.PI * x) * Math.cos(w*t) + 'px)';
-		else item.style.transform = 'translateX(' + A.value * Math.cos(k*x - w*t) + 'px)';
+		if(standing.checked) item.style.transform = 'translateX(' + A * Math.sin(k*x) * Math.cos(w*t) + 'px)';
+		else item.style.transform = 'translateX(' + A * Math.cos(k*x - w*t) + 'px)';
 	});
 	
 	// Recursion

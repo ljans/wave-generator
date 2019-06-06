@@ -1,13 +1,15 @@
 body {
 	font-family: sans-serif;
-	font-size: 18px;
 }
 
 fieldset {
-	display: inline-block;
 	margin-bottom: 16px;
 	overflow: hidden;
 	border: 1px solid #BBB;
+}
+
+form {
+	display: flex;
 }
 
 input[type="number"] {
@@ -16,20 +18,21 @@ input[type="number"] {
 	font: inherit;
 }
 
+.transverse {
+	height: 100px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
 .transverse > * {
-	position: relative;
-	width: 10px;
-	height: 10px;
-	border-radius: 5px;
+	width: 4px;
+	height: 4px;
+	border-radius: 2px;
 	background-color: #000;
-	margin: 50px 8px;
-	color: #FFF;
-	font-size: 10px;
-	display: inline-block;
 }
 
 .longitudinal {
-	width: 650px;
 	height: 20px;
 	margin-top: 4px;
 	position: relative;
