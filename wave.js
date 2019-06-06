@@ -32,14 +32,14 @@ function animate(timestamp) {
 		const A = item.parentNode.offsetHeight / 2;
 		
 		// Calculate standing/travelling wave
-		if(standing.checked) item.style.transform = 'translateY(' + A * Math.sin(k*x) * Math.cos(w*t) + 'px)';
-		else item.style.transform = 'translateY(' + A * Math.cos(k*x - w*t) + 'px)';
+		if(standing.checked) item.style.transform = 'translateY(' + (-A) * Math.sin(k*x) * Math.cos(w*t) + 'px)';
+		else item.style.transform = 'translateY(' + (-A) * Math.cos(k*x - w*t) + 'px)';
 	});
 	
 	// Longitudinal wave
 	document.querySelector('.longitudinal').childNodes.forEach((item, p) => {
 		const x = item.offsetLeft / item.parentNode.offsetWidth;
-		const A = (l.value / 4) * item.parentNode.offsetWidth;
+		const A = (l.value / 6) * item.parentNode.offsetWidth;
 		
 		// Calculate standing/travelling wave
 		if(standing.checked) item.style.transform = 'translateX(' + A * Math.sin(k*x) * Math.cos(w*t) + 'px)';
