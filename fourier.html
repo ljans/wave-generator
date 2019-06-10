@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Wave generator</title>
+	<link rel="stylesheet" href="design.css">
+	<script src="canvas.js" defer></script>
+	<script src="visualizer.js" defer></script>
+	<script src="fourier.js" defer></script>
+</head>
+
+<body>
+	<div class="panel">
+		<fieldset>
+			<legend>Position</legend>
+			<input type="range" min="0.0001" max="0.9999" step="any" name="a" value="0.0001">
+			<button data-a="6">6</button>
+			<button data-a="7">7</button>
+			<button data-a="8">8</button>
+		</fieldset>
+		<fieldset>
+			<legend>Velocity</legend>
+			<input type="range" min="1" max="10" step="any" name="v" value="4.2">
+		</fieldset>
+		<fieldset>
+			<legend>Volume</legend>
+			<input type="range" min="0" max="0.25" step="any" name="volume" value="0">
+		</fieldset>
+		<fieldset>
+			<legend>
+				<label>
+					<input type="checkbox" name="all" checked>
+					<span>Normal modes</span>
+				</label>
+			</legend>
+			<div class="modes"></div>
+		</fieldset>
+	</div>
+	
+	<div class="transverse"></div>
+	
+	<div class="panel">
+		<fieldset>
+			<legend>Time Domain</legend>
+			<canvas id="timeDomain"></canvas>
+		</fieldset>
+		<fieldset>
+			<legend>Frequency Domain</legend>
+			<canvas id="frequencyDomain"></canvas>
+		</fieldset>
+	</div>
+</body>
+</html>

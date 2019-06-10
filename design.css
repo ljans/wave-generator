@@ -2,13 +2,18 @@ body {
 	font-family: sans-serif;
 }
 
+canvas {
+	width: 560px;
+	height: 230px;
+}
+
 fieldset {
 	margin-bottom: 16px;
 	overflow: hidden;
 	border: 1px solid #BBB;
 }
 
-form {
+.panel {
 	display: flex;
 }
 
@@ -18,17 +23,23 @@ input[type="number"] {
 	font: inherit;
 }
 
+label + label {
+	margin-left: 10px;
+}
+
 .transverse {
-	height: 100px;
+	height: 275px;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+	margin: 10px 4px;
 }
 
 .transverse > * {
-	width: 4px;
-	height: 4px;
-	border-radius: 2px;
+	width: 8px;
+	height: 8px;
+	margin: -4px;
+	border-radius: 4px;
 	background-color: #000;
 }
 
@@ -40,10 +51,10 @@ input[type="number"] {
 
 .longitudinal > * {
 	position: absolute;
-	width: 2px;
-	height: 2px;
-	margin: -1px;
-	border-radius: 2px;
+	width: 4px;
+	height: 4px;
+	margin: -2px;
+	border-radius: 3px;
 	background-color: #000;
 }
 

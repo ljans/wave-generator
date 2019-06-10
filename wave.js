@@ -5,7 +5,7 @@ const N = 100;
 for(let p=0; p<=N+1; p++) document.querySelector('.transverse').innerHTML += '<div></div>';
 
 // Setup molecules
-for(let p=0; p<500; p++) {
+for(let p=0; p<300; p++) {
 	const atom = document.createElement('div');
 	const longitudinal = document.querySelector('.longitudinal');
 	atom.style.left = Math.random() * longitudinal.offsetWidth + 'px';
