@@ -12,32 +12,52 @@
 <body>
 	<div class="panel">
 		<fieldset>
-			<legend>Position</legend>
-			<input type="range" min="0.0001" max="0.9999" step="any" name="a" value="0.0001">
-			<button data-a="6">6</button>
-			<button data-a="7">7</button>
-			<button data-a="8">8</button>
+			<legend>
+				<span>Position</span>
+				<button data-a="6">6</button>
+				<button data-a="7">7</button>
+				<button data-a="8">8</button>
+			</legend>
+			<input type="range" min="0.0001" max="0.9999" step="any" id="a" value="0.18">
 		</fieldset>
 		<fieldset>
 			<legend>Velocity</legend>
-			<input type="range" min="1" max="10" step="any" name="v" value="3.7362">
+			<input type="range" min="1" max="10" step="any" id="v" value="3.7362">
 		</fieldset>
 		<fieldset>
 			<legend>Volume</legend>
-			<input type="range" min="0" max="0.25" step="any" name="volume" value="0">
+			<input type="range" min="0" max="0.25" step="any" id="volume" value="0">
 		</fieldset>
 		<fieldset>
 			<legend>
 				<label>
-					<input type="checkbox" name="all" checked>
+					<input type="checkbox" id="all" checked>
 					<span>Normal modes</span>
 				</label>
 			</legend>
-			<div class="modes"></div>
+			<div id="modes"></div>
+		</fieldset>
+		<fieldset>
+			<legend>Type</legend>
+			<select id="type">
+				<option value="1">Plucked string</option>
+				<option value="2">Disturbance</option>
+			</select>
+		</fieldset>
+		<fieldset>
+			<legend>Boundary</legend>
+			<label>
+				<input type="radio" name="type" id="fixed" checked>
+				<span>Fixed</span>
+			</label><br>
+			<label>
+				<input type="radio" name="type">
+				<span>Loose</span>
+			</label>
 		</fieldset>
 	</div>
 	
-	<div class="transverse"></div>
+	<div id="transverse"></div>
 	
 	<div class="panel">
 		<fieldset>

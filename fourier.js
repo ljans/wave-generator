@@ -1,9 +1,10 @@
 // Locate elements
-const transverse = document.querySelector('.transverse');
-const modes = document.querySelector('.modes');
-const v = document.querySelector('input[name="v"]');
-const a = document.querySelector('input[name="a"]');
-const volume = document.querySelector('input[name="volume"]');
+const transverse = document.querySelector('#transverse');
+const modes = document.querySelector('#modes');
+const v = document.querySelector('input#v');
+const a = document.querySelector('input#a');
+const volume = document.querySelector('input#volume');
+const fixed = document.querySelector('input#fixed');
 
 // Setup number of particles and modes
 const N = 100;
@@ -11,11 +12,11 @@ const m = 10;
 
 // Render particles and modes
 for(let i=0; i<=N+1; i++) transverse.innerHTML += '<div></div>';
-for(let n=1; n<=m; n++) modes.innerHTML += '<label><span>'+n+'</span><input type="checkbox" name="b'+n+'" checked></label>';
+for(let n=1; n<=m; n++) modes.innerHTML += '<label><span>'+n+'</span><input type="checkbox" id="b'+n+'" checked></label>';
 
 // Check-all modes
-document.querySelector('input[name="all"]').addEventListener('change', function(){
-	document.querySelectorAll('.modes input').forEach(mode => mode.checked = this.checked);
+document.querySelector('input#all').addEventListener('change', function(){
+	document.querySelectorAll('#modes input').forEach(mode => mode.checked = this.checked);
 });
 
 // Predefined positions
@@ -60,8 +61,8 @@ function animate(timestamp) {
 	const t = timestamp / 1000;
 	
 	// Transverse wave
-	document.querySelector('.transverse').childNodes.forEach((item, p) => {
-		const x = p / (N+1);
+	transverse.childNodes.forEach((item, p) => {
+		let x = p / (N+1);
 		
 		// Reset total elongation
 		let y = 0;
@@ -70,15 +71,31 @@ function animate(timestamp) {
 		for(let n=1; n<=m; n++) {
 			const k = n * Math.PI;
 			const w = k * (v.value / 10);
+			const d = 1/10;
 			
-			// Calculate amplitude
-			const A = Math.sin(Math.PI * a.value * n) / (Math.PI * a.value * Math.pow(n, 2) * (a.value - 1));
+			// Reset coefficients
+			let a_n = 0;
+			let b_n = 0;
+			
+			// Calculate coefficients
+			if(type.value == 1) {
+				if(fixed.checked) b_n = -Math.sin(Math.PI * a.value * n) / (Math.pow(Math.PI * n, 2) * a.value * (a.value - 1));
+				else a_n = (a.value * Math.cos(Math.PI * n) - a.value + 1 - Math.cos(Math.PI * n * a.value)) / (Math.pow(Math.PI * n, 2) * a.value * (a.value - 1));
+			} else {
+				if(fixed.checked) b_n = (Math.cos((a.value - d) * n * Math.PI) - Math.cos((parseFloat(a.value) + d) * n * Math.PI)) / (n * Math.PI);
+				else a_n = (Math.sin((a.value - d) * n * Math.PI) - Math.sin((parseFloat(a.value) + d) * n * Math.PI)) / (n * Math.PI);
+			}
 			
 			// Add coefficients and elongation if checked
-			if(document.querySelector('input[name="b'+n+'"]').checked) {
-				imag[n] = A;
-				y+= 80 * A * Math.sin(k*x) * Math.cos(w*t);
-			} else imag[n] = 0;
+			if(document.querySelector('input#b'+n+'').checked) {
+				real[n] = a_n;
+				imag[n] = b_n;
+				y+= transverse.offsetHeight * a_n * Math.cos(k*x) * Math.cos(w*t);
+				y+= transverse.offsetHeight * b_n * Math.sin(k*x) * Math.cos(w*t);
+			} else {
+				real[n] = 0;
+				imag[n] = 0;
+			}
 		}
 		
 		// Apply elongation

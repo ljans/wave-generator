@@ -11,17 +11,21 @@
 	<div class="panel">
 		<fieldset>
 			<legend>Wavelength</legend>
-			<input type="range" name="l" min="0.25" max="1" value="0.5" step="any">
+			<input type="range" id="l" min="0.25" max="1" value="0.5" step="any">
 		</fieldset>
 		<fieldset>
 			<legend>Velocity</legend>
-			<input type="range" name="v" min="0" max="3" step="any">
+			<input type="range" id="v" min="0" max="3" step="any">
 		</fieldset>
 		<fieldset>
-			<legend>Standing</legend>
+			<legend>Type</legend>
 			<label>
-				<input type="checkbox" name="standing">
-				<span>Yes</span>
+				<input type="radio" name="type" checked>
+				<span>Travelling</span>
+			</label>
+			<label>
+				<input type="radio" name="type" id="standing">
+				<span>Standing</span>
 			</label>
 		</fieldset>
 	</div>
@@ -29,14 +33,14 @@
 	<div>
 		<fieldset>
 			<legend>Transverse Wave</legend>
-			<div class="transverse"></div>
+			<div id="transverse"></div>
 		</fieldset>
 	</div>
 	
 	<div>
 		<fieldset>
 			<legend>Longitudinal Wave</legend>
-			<div class="longitudinal"></div>
+			<div id="longitudinal"></div>
 		</fieldset>
 	</div>
 </body>
