@@ -56,9 +56,20 @@ setInterval(() => {
 // Start oscillator after interaction
 volume.addEventListener('input', () => oscillator.start(), {once: true});
 
+// Play/Pause animation
+transverse.addEventListener('click', () => { paused = !paused; });
+
 // Animation loop
+let paused = true;
+let buffer = 0;
+let t = 0;
 function animate(timestamp) {
-	const t = timestamp / 1000;
+	if(!timestamp) timestamp = 0;
+	
+	// Calculate t
+	const next = (timestamp / 1000) - buffer;
+	if(paused) buffer+= next - t;
+	t = (timestamp / 1000) - buffer;
 	
 	// Transverse wave
 	transverse.childNodes.forEach((item, p) => {
