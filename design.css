@@ -59,5 +59,9 @@ label + label {
 }
 
 #longitudinal > *:last-child {
-	border: 1px solid #F00;
+	width: 2px;
+	top: -6px !important;
+	bottom: -6px !important;
+	height: auto;
+	background-color: #F00;
 }

@@ -42,8 +42,10 @@ class Visualizer {
 	
 	// Draw loop
 	draw() {
-		if(this.timeDomain) this.refreshTimeDomain(this.timeDomain);
-		if(this.frequencyDomain) this.refreshFrequencyDomain(this.frequencyDomain);
+		if(!this.freeze) {
+			if(this.timeDomain) this.refreshTimeDomain(this.timeDomain);
+			if(this.frequencyDomain) this.refreshFrequencyDomain(this.frequencyDomain);
+		}
 		requestAnimationFrame(() => this.draw());
 	}
 }

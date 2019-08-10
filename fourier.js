@@ -59,6 +59,11 @@ volume.addEventListener('input', () => oscillator.start(), {once: true});
 // Play/Pause animation
 transverse.addEventListener('click', () => { paused = !paused; });
 
+// Freeze visualisation
+document.querySelectorAll('canvas').forEach(canvas => {
+	canvas.addEventListener('click', () => visualizer.freeze = !visualizer.freeze);
+});
+
 // Animation loop
 let paused = true;
 let buffer = 0;
