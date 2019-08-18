@@ -5,6 +5,7 @@ const v = document.querySelector('input#v');
 const a = document.querySelector('input#a');
 const volume = document.querySelector('input#volume');
 const fixed = document.querySelector('input#fixed');
+const type = document.querySelector('#type');
 
 // Setup number of particles and modes
 const N = 100;
@@ -93,10 +94,12 @@ function animate(timestamp) {
 			let a_n = 0;
 			let b_n = 0;
 			
-			// Calculate coefficients
+			// Plucked string
 			if(type.value == 1) {
 				if(fixed.checked) b_n = -Math.sin(Math.PI * a.value * n) / (Math.pow(Math.PI * n, 2) * a.value * (a.value - 1));
 				else a_n = (a.value * Math.cos(Math.PI * n) - a.value + 1 - Math.cos(Math.PI * n * a.value)) / (Math.pow(Math.PI * n, 2) * a.value * (a.value - 1));
+			
+			// Disturbance
 			} else {
 				if(fixed.checked) b_n = (Math.cos((a.value - d) * n * Math.PI) - Math.cos((parseFloat(a.value) + d) * n * Math.PI)) / (n * Math.PI);
 				else a_n = (Math.sin((a.value - d) * n * Math.PI) - Math.sin((parseFloat(a.value) + d) * n * Math.PI)) / (n * Math.PI);
