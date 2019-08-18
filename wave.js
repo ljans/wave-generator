@@ -24,7 +24,7 @@ function animate(timestamp) {
 	
 	// Calculate global values
 	const k = (2 * Math.PI) / l.value;
-	const w = k * (v.value / 10);
+	const w = k * v.value;
 	
 	// Transverse wave
 	document.querySelector('#transverse').childNodes.forEach((item, p) => {
@@ -39,7 +39,7 @@ function animate(timestamp) {
 	// Longitudinal wave
 	document.querySelector('#longitudinal').childNodes.forEach((item, p) => {
 		const x = item.offsetLeft / item.parentNode.offsetWidth;
-		const A = (l.value / 6) * item.parentNode.offsetWidth;
+		const A = (l.value / 7) * item.parentNode.offsetWidth;
 		
 		// Calculate standing/travelling wave
 		if(standing.checked) item.style.transform = 'translateX(' + A * Math.sin(k*x) * Math.cos(w*t) + 'px)';
